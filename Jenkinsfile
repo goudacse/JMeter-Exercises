@@ -2,24 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven 3.9.9'   // name you gave in Jenkins tool config
+        maven 'Maven 3.9.9'
     }
-
-    stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', url: 'https://github.com/goudacse/JMeter-Exercises.git'
-            }
-        }
-
-        stage('Run JMeter via Maven') {
-            steps {
-                bat "mvn clean verify"
-            }
-        }
-    }
-
-
 
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
@@ -44,7 +28,7 @@ pipeline {
             }
         }
 
-        stage('Publish HTML Report') {
+        stage('Publish JMeter HTML Report') {
             steps {
                 publishHTML([
                     allowMissing: false,
@@ -60,7 +44,6 @@ pipeline {
 
     post {
         always {
-            echo 'Cleaning up workspace...'
             cleanWs()
         }
     }
