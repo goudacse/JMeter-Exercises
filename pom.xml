@@ -1,47 +1,49 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.goudacse</groupId>
+
+    <groupId>com.github.goudacse</groupId>
     <artifactId>jmeter-exercises</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <jmeter.maven.plugin.version>3.9.0</jmeter.maven.plugin.version>
+        <jmeter.version>5.6.3</jmeter.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <build>
         <plugins>
+            <!-- JMeter Maven Plugin -->
             <plugin>
                 <groupId>com.lazerycode.jmeter</groupId>
                 <artifactId>jmeter-maven-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>${jmeter.maven.plugin.version}</version>
+                <configuration>
+                    <!-- JMX test files to run -->
+                    <testFilesIncluded>
+                        <jMeterTestFile>PetStore-Test-Plan-Add-All-Products.jmx</jMeterTestFile>
+                    </testFilesIncluded>
+
+                    <!-- Ensure JTL results are generated -->
+                    <resultsFileFormat>xml</resultsFileFormat>
+                    <resultsOutputIsCSV>false</resultsOutputIsCSV>
+
+                    <!-- Generate HTML report after test -->
+                    <generateReports>true</generateReports>
+
+                    <!-- Results directory -->
+                    <resultsDirectory>target/jmeter/results</resultsDirectory>
+                </configuration>
                 <executions>
-                    <!-- Step 1: generate config.json -->
-                    <execution>
-                        <id>configuration</id>
-                        <goals>
-                            <goal>configure</goal>
-                        </goals>
-                    </execution>
-                    <!-- Step 2: run JMeter tests -->
                     <execution>
                         <id>jmeter-tests</id>
-                        <phase>verify</phase>
                         <goals>
                             <goal>jmeter</goal>
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <!-- Path to your JMX test scripts -->
-                    <testFilesDirectory>${project.basedir}/Test Plans</testFilesDirectory>
-                    <testFilesIncluded>
-                        <jMeterTestFile>*.jmx</jMeterTestFile>
-                    </testFilesIncluded>
-
-                    <!-- Results and reporting -->
-                    <resultsDirectory>${project.build.directory}/jmeter/results</resultsDirectory>
-                    <generateReports>true</generateReports>
-                    <resultsFileFormat>xml</resultsFileFormat>
-                </configuration>
             </plugin>
         </plugins>
     </build>
