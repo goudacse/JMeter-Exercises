@@ -40,7 +40,7 @@
                     <!-- Results and reporting -->
                     <resultsDirectory>${project.build.directory}/jmeter/results</resultsDirectory>
                     <generateReports>true</generateReports>
-                    <resultsFileFormat>xml</resultsFileFormat>
+                    <resultsFileFormat>csv</resultsFileFormat>
                 </configuration>
             </plugin>
         </plugins>
