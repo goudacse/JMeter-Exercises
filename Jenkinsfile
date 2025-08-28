@@ -45,7 +45,7 @@ pipeline {
                         allowMissing: false,
                         alwaysLinkToLastBuild: true,
                         keepAll: true,
-                        reportDir: reportDir,
+                        reportDir: "target/jmeter/reports/PetStore-End-to-End-Flow",
                         reportFiles: 'index.html',
                         reportName: 'JMeter HTML Report'
                     ])
