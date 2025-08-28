@@ -32,9 +32,9 @@
       </ConfigTestElement>
       <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group">
-        <stringProp name="ThreadGroup.num_threads">${__P(TOTAL_THREADS,1)}</stringProp>
+        <stringProp name="ThreadGroup.num_threads">${__P(TOTAL_THREADS,2)}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${__P(RAMP_UP,10)}</stringProp>
-        <longProp name="ThreadGroup.duration">30</longProp>
+        <longProp name="ThreadGroup.duration">90</longProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
@@ -707,18 +707,18 @@ vars.put(&quot;total&quot;,String.format (&quot;%,.2f&quot;, total))</stringProp
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="think_time">
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="think_time" enabled="true">
           <intProp name="ActionProcessor.action">1</intProp>
           <intProp name="ActionProcessor.target">0</intProp>
           <stringProp name="ActionProcessor.duration">3000</stringProp>
         </TestAction>
         <hashTree>
-          <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer">
+          <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
             <stringProp name="ConstantTimer.delay">3000</stringProp>
           </ConstantTimer>
           <hashTree/>
         </hashTree>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller">
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
           <stringProp name="IfController.condition">${__groovy(${extract_total} == ${total},)}</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
           <boolProp name="IfController.useExpression">true</boolProp>
@@ -948,7 +948,7 @@ vars.put(&quot;total&quot;,String.format (&quot;%,.2f&quot;, total))</stringProp
               <hashTree/>
             </hashTree>
           </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T80_ConfirmOrder">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T80_ConfirmOrder" enabled="true">
             <boolProp name="TransactionController.parent">true</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
@@ -1028,18 +1028,18 @@ vars.put(&quot;total&quot;,String.format (&quot;%,.2f&quot;, total))</stringProp
               <hashTree/>
             </hashTree>
           </hashTree>
-          <TestAction guiclass="TestActionGui" testclass="TestAction" testname="think_time">
+          <TestAction guiclass="TestActionGui" testclass="TestAction" testname="think_time" enabled="true">
             <intProp name="ActionProcessor.action">1</intProp>
             <intProp name="ActionProcessor.target">0</intProp>
             <stringProp name="ActionProcessor.duration">3000</stringProp>
           </TestAction>
           <hashTree>
-            <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer">
+            <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
               <stringProp name="ConstantTimer.delay">3000</stringProp>
             </ConstantTimer>
             <hashTree/>
           </hashTree>
-          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Order Validation">
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Order Validation" enabled="true">
             <stringProp name="scriptLanguage">groovy</stringProp>
             <stringProp name="parameters">${extract_ordernumber}</stringProp>
             <stringProp name="filename"></stringProp>
@@ -1050,12 +1050,12 @@ assert ordernumber.matches(&quot;([0-9]{4,8})&quot;)
 </stringProp>
           </JSR223Sampler>
           <hashTree/>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T90_GotoAccount">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T90_GotoAccount" enabled="true">
             <boolProp name="TransactionController.parent">true</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GoToMyAccount">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GoToMyAccount" enabled="true">
               <stringProp name="HTTPSampler.domain">petstore.octoperf.com</stringProp>
               <stringProp name="HTTPSampler.port">443</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1112,7 +1112,7 @@ assert ordernumber.matches(&quot;([0-9]{4,8})&quot;)
               <hashTree/>
             </hashTree>
           </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T120_Logout">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T120_Logout" enabled="true">
             <boolProp name="TransactionController.parent">true</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
@@ -1231,7 +1231,7 @@ assert ordernumber.matches(&quot;([0-9]{4,8})&quot;)
             <boolProp name="IfController.useExpression">true</boolProp>
           </IfController>
           <hashTree>
-            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T100_MyOrders">
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T100_MyOrders" enabled="true">
               <boolProp name="TransactionController.parent">true</boolProp>
               <boolProp name="TransactionController.includeTimers">false</boolProp>
             </TransactionController>
@@ -1295,19 +1295,19 @@ assert ordernumber.matches(&quot;([0-9]{4,8})&quot;)
               </hashTree>
             </hashTree>
           </hashTree>
-          <TestAction guiclass="TestActionGui" testclass="TestAction" testname="think_time">
+          <TestAction guiclass="TestActionGui" testclass="TestAction" testname="think_time" enabled="true">
             <intProp name="ActionProcessor.action">1</intProp>
             <intProp name="ActionProcessor.target">0</intProp>
             <stringProp name="ActionProcessor.duration">3000</stringProp>
           </TestAction>
           <hashTree>
-            <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer">
+            <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
               <stringProp name="ConstantTimer.delay">3000</stringProp>
             </ConstantTimer>
             <hashTree/>
           </hashTree>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>

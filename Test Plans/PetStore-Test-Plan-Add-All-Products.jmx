@@ -18,13 +18,13 @@
         <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
       </CookieManager>
       <hashTree/>
-      <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager">
+      <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager" enabled="true">
         <boolProp name="clearEachIteration">false</boolProp>
         <boolProp name="useExpires">true</boolProp>
         <boolProp name="CacheManager.controlledByThread">false</boolProp>
       </CacheManager>
       <hashTree/>
-      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults">
+      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
         <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
           <collectionProp name="Arguments.arguments"/>
         </elementProp>
@@ -32,17 +32,19 @@
       </ConfigTestElement>
       <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group">
-        <intProp name="ThreadGroup.num_threads">1</intProp>
-        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <intProp name="ThreadGroup.num_threads">2</intProp>
+        <intProp name="ThreadGroup.ramp_time">10</intProp>
+        <longProp name="ThreadGroup.duration">90</longProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <stringProp name="LoopController.loops">1</stringProp>
+          <intProp name="LoopController.loops">-1</intProp>
           <boolProp name="LoopController.continue_forever">false</boolProp>
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
           <collectionProp name="Arguments.arguments">
             <elementProp name="cartQuantity" elementType="Argument">
               <stringProp name="Argument.name">cartQuantity</stringProp>
@@ -64,7 +66,7 @@
           <stringProp name="shareMode">shareMode.all</stringProp>
         </CSVDataSet>
         <hashTree/>
-        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler_TestData">
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler_TestData" enabled="true">
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
@@ -88,7 +90,7 @@ log.info(&quot;Randomly selected animal: &quot; + randomAnimal)</stringProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Launch">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Launch" enabled="true">
             <stringProp name="HTTPSampler.domain">petstore.octoperf.com</stringProp>
             <stringProp name="HTTPSampler.port">443</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -143,7 +145,7 @@ log.info(&quot;Randomly selected animal: &quot; + randomAnimal)</stringProp>
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T10_01_SignIn">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T10_01_SignIn" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
@@ -367,7 +369,7 @@ log.info(&quot;Randomly selected animal: &quot; + randomAnimal)</stringProp>
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T20_02_ProductClick">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T20_02_ProductClick" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
@@ -447,7 +449,7 @@ log.info(&quot;Randomly selected animal: &quot; + randomAnimal)</stringProp>
             <hashTree/>
           </hashTree>
         </hashTree>
-        <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller">
+        <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller" enabled="true">
           <stringProp name="ForeachController.inputVal">extract_AllProductIds</stringProp>
           <stringProp name="ForeachController.returnVal">eachProductId</stringProp>
           <boolProp name="ForeachController.useSeparator">true</boolProp>
@@ -455,7 +457,7 @@ log.info(&quot;Randomly selected animal: &quot; + randomAnimal)</stringProp>
           <stringProp name="ForeachController.endIndex">${extract_AllProductIds_matchNr}</stringProp>
         </ForeachController>
         <hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T30_03_Clickon${eachProductId}Link">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T30_03_Clickon${eachProductId}Link" enabled="true">
             <boolProp name="TransactionController.parent">true</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
@@ -543,7 +545,7 @@ log.info(&quot;Randomly selected animal: &quot; + randomAnimal)</stringProp>
             <stringProp name="ForeachController.endIndex">${extract_itemsId_matchNr}</stringProp>
           </ForeachController>
           <hashTree>
-            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T40_04_AddToCart_${each_itemId}">
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T40_04_AddToCart_${each_itemId}" enabled="true">
               <boolProp name="TransactionController.parent">true</boolProp>
               <boolProp name="TransactionController.includeTimers">false</boolProp>
             </TransactionController>
@@ -624,7 +626,7 @@ log.info(&quot;Randomly selected animal: &quot; + randomAnimal)</stringProp>
             </hashTree>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T50_05_ProceedtoCheckout">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T50_05_ProceedtoCheckout" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
@@ -686,7 +688,7 @@ log.info(&quot;Randomly selected animal: &quot; + randomAnimal)</stringProp>
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T60_06_ClickonContinue">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T60_06_ClickonContinue" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
@@ -848,7 +850,7 @@ log.info(&quot;Randomly selected animal: &quot; + randomAnimal)</stringProp>
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T70_07_ConfirmOrder">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T70_07_ConfirmOrder" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
@@ -928,7 +930,7 @@ log.info(&quot;Randomly selected animal: &quot; + randomAnimal)</stringProp>
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T80_08_GotoAccount">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T80_08_GotoAccount" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
@@ -990,7 +992,7 @@ log.info(&quot;Randomly selected animal: &quot; + randomAnimal)</stringProp>
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T90_09_MyOrders">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T90_09_MyOrders" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
@@ -1053,7 +1055,7 @@ log.info(&quot;Randomly selected animal: &quot; + randomAnimal)</stringProp>
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T100_10_Logout">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T100_10_Logout" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
@@ -1172,7 +1174,7 @@ log.info(&quot;Randomly selected animal: &quot; + randomAnimal)</stringProp>
           <boolProp name="displaySystemProperties">false</boolProp>
         </DebugSampler>
         <hashTree/>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -1209,7 +1211,7 @@ log.info(&quot;Randomly selected animal: &quot; + randomAnimal)</stringProp>
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
