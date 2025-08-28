@@ -26,7 +26,8 @@ pipeline {
         stage('Archive Results') {
             steps {
                 // Archive all JMeter results + HTML dashboards
-                archiveArtifacts artifacts: 'target/jmeter/results/**/*', allowEmptyArchive: false
+                archiveArtifacts artifacts: 'target/jmeter/results/**/*', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'target/jmeter/results/**/*', allowEmptyArchive: true
             }
         }
 
