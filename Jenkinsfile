@@ -37,7 +37,7 @@ pipeline {
                 script {
                     // Detect latest results folder under target/jmeter/results
                     def latestFolder = bat(
-                        script: 'dir /b /ad /o-d "target\\jmeter\\results" > latest.txt && for /f %%i in (latest.txt) do @echo %%i',
+                        script: 'dir /b /ad /o-d "target\\jmeter\\results" > latest.txt && for /F %%i in (latest.txt) do @echo %%i',
                         returnStdout: true
                     ).trim()
 
