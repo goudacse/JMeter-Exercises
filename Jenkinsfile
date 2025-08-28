@@ -31,18 +31,21 @@ pipeline {
         }
 
         stage('Publish JMeter HTML Report') {
-            steps {
-                publishHTML([
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: 'target/jmeter/results',
-                    reportFiles: 'index.html',
-                    reportName: 'JMeter HTML Report'
-                ])
-            }
+    steps {
+        script {
+            // Find latest index.html in results
+            def reportDir = bat(script: 'for /f "delims=" %i in (\'dir /b /ad "target\\jmeter\\results"\') do @echo target\\jmeter\\results\\%i', returnStdout: true).trim()
+            publishHTML([
+                allowMissing: false,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: reportDir,
+                reportFiles: 'index.html',
+                reportName: 'JMeter HTML Report'
+            ])
         }
     }
+}
 
     post {
         always {
