@@ -8,6 +8,7 @@ pipeline {
     options {
         // Keep only last 5 builds (logs + artifacts + reports)
         buildDiscarder(logRotator(numToKeepStr: '5'))
+        timestamps()
     }
 
     stages {
@@ -25,15 +26,16 @@ pipeline {
 
         stage('Archive Results') {
             steps {
-                // Archive both .jtl files and the full HTML dashboard
-                archiveArtifacts artifacts: 'target/jmeter/results/**/*', allowEmptyArchive: false
+                // Archive JTL files and generated HTML reports
+                archiveArtifacts artifacts: 'target/jmeter/results/**/*', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'target/jmeter/reports/**/*', allowEmptyArchive: true
             }
         }
 
         stage('Publish JMeter HTML Report') {
             steps {
                 script {
-                    // Find the latest results folder
+                    // Detect latest results folder under target/jmeter/results
                     def latestFolder = bat(
                         script: 'for /f "delims=" %i in (\'dir /b /ad /o-d "target\\jmeter\\results"\') do @echo %i & exit /b',
                         returnStdout: true
@@ -45,7 +47,7 @@ pipeline {
                         allowMissing: false,
                         alwaysLinkToLastBuild: true,
                         keepAll: true,
-                        reportDir: "target/jmeter/reports/PetStore-End-to-End-Flow",
+                        reportDir: reportDir,
                         reportFiles: 'index.html',
                         reportName: 'JMeter HTML Report'
                     ])
