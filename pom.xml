@@ -1,53 +1,46 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github.goudacse</groupId>
+    <groupId>com.goudacse</groupId>
     <artifactId>jmeter-exercises</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
-
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <jmeter.version>5.6.3</jmeter.version> <!-- latest JMeter -->
-    </properties>
 
     <build>
         <plugins>
-            <!-- ✅ JMeter Maven Plugin -->
             <plugin>
                 <groupId>com.lazerycode.jmeter</groupId>
                 <artifactId>jmeter-maven-plugin</artifactId>
-                <version>3.10.0</version>
+                <version>3.8.0</version>
                 <executions>
+                    <!-- Step 1: generate config.json -->
+                    <execution>
+                        <id>configuration</id>
+                        <goals>
+                            <goal>configure</goal>
+                        </goals>
+                    </execution>
+                    <!-- Step 2: run JMeter tests -->
                     <execution>
                         <id>jmeter-tests</id>
+                        <phase>verify</phase>
                         <goals>
                             <goal>jmeter</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
-                    <!-- Where to find JMX test plans -->
+                    <!-- Path to your JMX test scripts -->
+                    <testFilesDirectory>${project.basedir}/Test Plans</testFilesDirectory>
                     <testFilesIncluded>
-                        <jMeterTestFile>**/*.jmx</jMeterTestFile>
+                        <jMeterTestFile>*.jmx</jMeterTestFile>
                     </testFilesIncluded>
 
-                    <!-- Save results in CSV -->
-                    <resultsFileFormat>csv</resultsFileFormat>
-                </configuration>
-            </plugin>
-
-            <!-- ✅ Surefire Plugin (optional, avoids test class errors) -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0</version>
-                <configuration>
-                    <skipTests>true</skipTests>
+                    <!-- Results and reporting -->
+                    <resultsDirectory>${project.build.directory}/jmeter/results</resultsDirectory>
+                    <generateReports>true</generateReports>
+                    <resultsFileFormat>xml</resultsFileFormat>
                 </configuration>
             </plugin>
         </plugins>
