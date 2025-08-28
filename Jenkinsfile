@@ -39,7 +39,7 @@ pipeline {
                         alwaysLinkToLastBuild: true,
                         keepAll: true,
                         reportDir: 'target/jmeter/results',
-                        reportFiles: 'index.html',
+                        reportFiles: '*.html',
                         reportName: 'JMeter HTML Report'
                     ])
                 }
