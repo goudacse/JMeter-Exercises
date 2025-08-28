@@ -14,6 +14,14 @@
                 <artifactId>jmeter-maven-plugin</artifactId>
                 <version>3.8.0</version>
                 <executions>
+                    <!-- Step 1: generate config.json -->
+                    <execution>
+                        <id>configuration</id>
+                        <goals>
+                            <goal>configure</goal>
+                        </goals>
+                    </execution>
+                    <!-- Step 2: run JMeter tests -->
                     <execution>
                         <id>jmeter-tests</id>
                         <phase>verify</phase>
@@ -23,11 +31,14 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <!-- Point directly to your Test Plans folder -->
+                    <!-- Path to your JMX test scripts -->
                     <testFilesDirectory>${project.basedir}/Test Plans</testFilesDirectory>
                     <testFilesIncluded>
                         <jMeterTestFile>*.jmx</jMeterTestFile>
                     </testFilesIncluded>
+
+                    <!-- Results and reporting -->
+                    <resultsDirectory>${project.build.directory}/jmeter/results</resultsDirectory>
                     <generateReports>true</generateReports>
                     <resultsFileFormat>xml</resultsFileFormat>
                 </configuration>
